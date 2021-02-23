@@ -1,24 +1,53 @@
+-########## bare metal form ##########
+-# %br
+-# %br
+-# %h1 Create user
+-# %br
+-# %br
+-# %form{ "method" => "post", "action" => "/users", "accept-charset" => "UTF-8"}
+-#   %input{ "type" => "hidden", "name" => "authenticity_token", "value" => form_authenticity_token }
+-#   %label{ :for => "username" }User name
+-#   %input{ :type => "text", :name => "user[username]", :id => "username" }
+-#   %br
+-#   %br
+-#   %label{ :for => "email" } E-mail 
+-#   %input{ :type => "text", :name => "user[email]", :id => "email" }
+-#   %br
+-#   %br
+-#   %label{ :for => "password" } Password 
+-#   %input{ :type => "password" , :name => "user[password]", :id => "password" }
+-#   %br
+-#   %br  
+-#   - flash.each do |type, msg|
+-#     %br
+-#     %code= msg
+-#   %br 
+-#   %input{ :type => "submit" }
+
+-########## with form_tag helper ##########
+-# %br
+-# = form_tag "/users", method: "post", name: "user" do
+-#   = label_tag 'User name: '
+-#   = text_field_tag "user[username]"
+-#   %br
+-#   = label_tag 'Email: '
+-#   = text_field_tag "user[email]"
+-#   %br
+-#   = label_tag 'Password: '
+-#   = password_field_tag "user[password]", nil, maxlength: 16
+
+-########## with form_with helper ##########
+%div 
 %br
-%br
-%h1 Create user
-%br
-%br
-%form{ "method" => "post", "action" => "/users", "accept-charset" => "UTF-8"}
-  %input{ "type" => "hidden", "name" => "authenticity_token", "value" => form_authenticity_token }
-  %label{ :for => "username" }User name
-  %input{ :type => "text", :name => "user[username]", :id => "username" }
+%h2 Sign up
+= form_with model: @user do |form|
+  = form.label :email
+  = form.text_field :email
   %br
+  = form.label :username
+  = form.text_field :username
   %br
-  %label{ :for => "email" } E-mail 
-  %input{ :type => "text", :name => "user[email]", :id => "email" }
+  = form.label :password
+  = form.password_field :password
   %br
-  %br
-  %label{ :for => "password" } Password 
-  %input{ :type => "password" , :name => "user[password]", :id => "password" }
-  %br
-  %br  
-  - flash.each do |type, msg|
-    %br
-    %code= msg
-  %br 
-  %input{ :type => "submit" }
+  = form.submit
