@@ -1,0 +1,24 @@
+%br
+%br
+%h1 Create user
+%br
+%br
+%form{ "method" => "post", "action" => "/users", "accept-charset" => "UTF-8"}
+  %input{ "type" => "hidden", "name" => "authenticity_token", "value" => form_authenticity_token }
+  %label{ :for => "username" }User name
+  %input{ :type => "text", :name => "user[username]", :id => "username" }
+  %br
+  %br
+  %label{ :for => "email" } E-mail 
+  %input{ :type => "text", :name => "user[email]", :id => "email" }
+  %br
+  %br
+  %label{ :for => "password" } Password 
+  %input{ :type => "password" , :name => "user[password]", :id => "password" }
+  %br
+  %br  
+  - flash.each do |type, msg|
+    %br
+    %code= msg
+  %br 
+  %input{ :type => "submit" }
