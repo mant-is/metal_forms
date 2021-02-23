@@ -37,8 +37,14 @@
 -#   = password_field_tag "user[password]", nil, maxlength: 16
 
 -########## with form_with helper ##########
-%div 
 %br
+%br  
+%br  
+- if @user.errors.any?
+  - @user.errors.each do |error|
+    = "- #{error.full_message}"
+    %br  
+%br 
 %h2 Sign up
 = form_with model: @user do |form|
   = form.label :email

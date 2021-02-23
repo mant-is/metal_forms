@@ -1,0 +1,13 @@
+%br 
+%h2 Try again
+= form_with model: @user do |form|
+  = form.label :email
+  = form.text_field :email
+  %br
+  = form.label :username
+  = form.text_field :username
+  %br
+  = form.label :password
+  = form.password_field :password
+  %br
+  = form.submit
